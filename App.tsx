@@ -1,19 +1,23 @@
+import { Loading } from '@components/Loading';
 import { useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto';
-import { StatusBar, Text, View } from 'react-native';
+import { SignIn } from '@screens/SignIn';
+import { NativeBaseProvider } from 'native-base';
+import { StatusBar, View } from 'react-native';
+import { THEME } from './src/theme';
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', backgroundColor: '#202024' }}>
+    <NativeBaseProvider theme={THEME}>
       <StatusBar 
         barStyle="light-content"
         backgroundColor="transparent"
         translucent
       />
 
-      { fontsLoaded ? <Text>Hello World</Text> : <View /> }
-    </View>
+      { fontsLoaded ? <SignIn /> : <Loading /> }
+    </NativeBaseProvider>
   );
 }
 
